@@ -9,3 +9,18 @@ class person(models.Model):
     mobile = models.IntegerField(max_length=10)
 
 
+class Supplier(models.Model):
+    SupplierName = models.CharField(max_length=200)
+    ContactNumber = models.IntegerField()
+
+    def __str__(self):
+        return self.SupplierName
+
+
+class Product(models.Model):
+    SupplierId = models.ForeignKey(Supplier, on_delete=models.CASCADE)
+    ProductName = models.CharField(max_length=100)
+    Price = models.IntegerField()
+
+    def __str__(self):
+        return self.ProductName

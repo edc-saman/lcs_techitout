@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import person
+from LCS.models import *
 
 # Register your models here.
-#admin.site.register(person)
+admin.site.register(person)
+admin.site.register(Supplier)
+admin.site.register(Product)
