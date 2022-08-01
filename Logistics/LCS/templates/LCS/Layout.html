@@ -11,7 +11,9 @@
     .shop-item {
     	    margin: 30px;
     	}
-
+    .logout-left-padding{
+        padding-left: 937px!important;
+    }
     .shop-item-title {
     	    display: block;
     	    width: 100%;
@@ -60,7 +62,7 @@
           <a class="nav-link active" aria-current="page" href="index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="logout.html">Logout</a>
+          <a class="nav-link logout-left-padding" href="{% url 'logout' %}">Logout</a>
         </li>
         <li><i class="fa-solid fa-cart-shopping"></i></li>
       </ul>

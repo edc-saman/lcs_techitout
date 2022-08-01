@@ -35,6 +35,9 @@ def loginPage(request):
         context = {}
         return render(request, 'LCS/login.html', context)
 
+def logoutuser(request):
+    logout(request)
+    return redirect('login')
 
 def home(request):
     products = Product.objects.all()
