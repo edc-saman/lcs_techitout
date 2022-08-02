@@ -1,9 +1,13 @@
 from django.core.checks import messages
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from cart.cart import Cart
 from .forms import CreateNewUser
 from .models import *
+
 
 
 def signup(request):
@@ -42,3 +46,48 @@ def logoutuser(request):
 def home(request):
     products = Product.objects.all()
     return render(request, 'LCS/dashboard.html', {'products': products})
+
+
+def cart_add(request, id):
+    cart = Cart(request)
+    products = Product.objects.all()
+    product = Product.objects.get(id=id)
+    cart.add(product=product)
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+
+def item_clear(request, id):
+    cart = Cart(request)
+    products = Product.objects.all()
+    product = Product.objects.get(id=id)
+    cart.remove(product)
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+
+def item_increment(request, id):
+    products = Product.objects.all()
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.add(product=product)
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+
+
+def item_decrement(request, id):
+    products = Product.objects.all()
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.decrement(product=product)
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect("dashboard")
+
+
+def cart_detail(request):
+    return render(request, 'dashboard.html')
+
+
+def get_total(request, id=1):
+    cart = Cart(request)
+    products = Product.objects.all()
+    product = Product.objects.get(id=id)

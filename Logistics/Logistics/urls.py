@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from Logistics import views
+app_name = 'LCS'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

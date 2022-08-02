@@ -19,8 +19,8 @@ class Supplier(models.Model):
 
 class Product(models.Model):
     SupplierId = models.ForeignKey(Supplier, on_delete=models.CASCADE)
-    ProductName = models.CharField(max_length=100)
-    Price = models.IntegerField()
+    name = models.CharField(max_length=100)
+    price = models.IntegerField()
 
     def __str__(self):
         return self.ProductName
