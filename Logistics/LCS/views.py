@@ -47,6 +47,16 @@ def home(request):
     products = Product.objects.all()
     return render(request, 'LCS/dashboard.html', {'products': products})
 
+def cart(request):
+    return render(request, 'LCS/cart.html')
+
+def pack(request):
+    products = Product.objects.all()
+    cart = Cart(request)
+    cart.clear()
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+
+
 
 def cart_add(request, id):
     cart = Cart(request)
@@ -78,14 +88,10 @@ def item_decrement(request, id):
     return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
 
 def cart_clear(request):
+    products = Product.objects.all()
     cart = Cart(request)
     cart.clear()
-    return redirect("dashboard")
-
-
-def cart_detail(request):
-    return render(request, 'dashboard.html')
-
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
 
 def get_total(request, id=1):
     cart = Cart(request)

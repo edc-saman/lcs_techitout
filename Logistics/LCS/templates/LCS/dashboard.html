@@ -13,7 +13,7 @@
                     <img class="shop-item-image" src="https://store.ferrari.com/product_image/30629810019624721/F/w480.jpg">
                     <div class="shop-item-details">
                         <span class="shop-item-price">$ {{i.price}}</span>
-												<button class="btn btn-primary shop-item-button"><a href="{% url 'cart_add' i.id %}" style="color:white;"> ADD TO CART</a></button>
+												<a href="{% url 'cart_add' i.id %}" class="btn btn-primary shop-item-button" style="color:white;"> ADD TO CART</a>
 
                         <!-- <a >Add To Pack</a> -->
                     </div>
@@ -40,17 +40,16 @@
 <div class="cart-rows">
 							<span class="cart-item cart-column">{{value.name}}</span>
 							<span class="cart-price  cart-column">{{value.price}}</span>
-							<button type="button" class="btn btn-light" id="plus">
-						      <span class="glyphicon glyphicon-minus">  <a href="{% url 'item_decrement' value.product_id %}"id="a-plus"> - </a> </span>
-						     </button>
+
+						    <a href="{% url 'item_decrement' value.product_id %}" class="btn btn-light" id="a-plus"> - </a>
+
 							<span class="cart-quantity-input cart-column">
 								{{value.quantity}}</span>
-								<button type="button" class="btn btn-light" id="plus">
-									 <span class="glyphicon glyphicon-plus"> <a href="{% url 'item_increment' value.product_id %}"  id="a-plus">  +  </a> </span>
-										</button>
+								<a href="{% url 'item_increment' value.product_id %}" class="btn btn-light" id="a-plus"> + </a>
+
 
 			    	<span class="cart-total cart-column">$ {{value.price|multiply:value.quantity}}</span>
-<button class="btn btn-outline-danger" type="button"><a href="{% url 'item_clear' value.product_id %}" > Remove </a></button>
+						<a href="{% url 'item_clear' value.product_id %} " class="btn btn-outline-danger" > Remove </a>
 
 		</div>
 {% endfor %}
@@ -61,7 +60,27 @@
 <div class="container">
 	<div>
   <div class="center">
-<button type="button" class="btn btn-primary">ADD PACK TO CART</button>
-</div></div></div>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD PACK TO CART</button>
+</div></div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Add another pack?
+      </div>
+      <div class="modal-footer">
+  <a href=" {% url 'pack' %} " class="btn btn-primary" > Yes </a>
+  <a href=" {% url 'cart' %} " class="btn btn-primary" >No, Continue to Cart </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <br>
 {% endblock %}

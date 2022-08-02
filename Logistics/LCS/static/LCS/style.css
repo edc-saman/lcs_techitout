@@ -44,7 +44,7 @@
 /* display: flex; */
 align-items: center;
 border-bottom: 1px solid black;
-margin-right: 1.5em;
+margin-right: 10px;
 padding-bottom: 10px;
 margin-top: 10px;
 }
@@ -112,11 +112,12 @@ width:20px; */
 
 #a-plus{
   text-decoration: none;
+  height: 20px;
+  width:20px;
 }
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  border: 3px solid green;
+  height: 100px;
 }

@@ -12,6 +12,6 @@ urlpatterns = [
          views.item_increment, name='item_increment'),
     path('dashboard/item_decrement/<int:id>/',
          views.item_decrement, name='item_decrement'),
-    path('dashboard/cart_clear/', views.get_total, name='get_total'),
-    path('dashboard/cart-detail/',views.cart_detail,name='cart_detail'),
+    path('dashboard/pack/', views.pack, name='pack'),
+    path('dashboard/cart/', views.cart ,name='cart'),
 ]
