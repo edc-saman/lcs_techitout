@@ -19,6 +19,6 @@ from django.urls import path, include
 from Logistics import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include("LCS.urls")),
+    path('admin/', admin.site.urls),
 ]

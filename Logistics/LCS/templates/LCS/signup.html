@@ -2,11 +2,11 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-<h1>Create an Account</h1>
+<h2>Create an Account</h2>
 <form method="post" action="/signup/" class="form-group">
     {% csrf_token %}
     {{form|crispy}}
     <br>
-    <button type="submit",name="createUser" class="btn btn-success">Register</button>
+    <button type="submit",name="createUser" class="btn btn-success" style="background-color:#0d6efd">Register</button>
 </form>
     {% endblock %}

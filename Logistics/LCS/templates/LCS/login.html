@@ -14,13 +14,13 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background: #eceff2 !important;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: #212529;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -38,13 +38,12 @@
 		}
 
 		#form-title{
-			color: #fff;
-			
+			color: #f8f9fa;
 		}
 
 		.login_btn {
 			width: 100%;
-			background: #33ccff !important;
+			background: #495057 !important;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -116,7 +115,9 @@
 
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'signup' %}" class="ml-2">Sign Up</a>
+						<p style="color:white">
+							Don't have an account? <a href="{% url 'signup' %}" class="ml-2">Sign Up</a>
+						</p>
 					</div>
 
 				</div>

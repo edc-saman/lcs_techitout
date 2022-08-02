@@ -4,13 +4,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateNewUser
 from .models import *
-
+from django.http import HttpResponse
 
 def signup(request):
     if request.method == "POST":
         form = CreateNewUser(request.POST)
         if form.is_valid():
             form.save()
+            print("Successfully Added")
     else:
         form = CreateNewUser()
     return render(request, "LCS/signup.html", {'form': form})
@@ -42,3 +43,8 @@ def logoutuser(request):
 def home(request):
     products = Product.objects.all()
     return render(request, 'LCS/dashboard.html', {'products': products})
+
+
+def base(request):
+    return HttpResponse("Welcome to Logistics Control System")
+
