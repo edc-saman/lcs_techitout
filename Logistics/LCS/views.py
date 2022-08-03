@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
-from .forms import CreateNewUser
+from .forms import CreateNewUser, CustomerForm
 from .models import *
 
 
@@ -15,6 +15,7 @@ def signup(request):
         form = CreateNewUser(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('login')
     else:
         form = CreateNewUser()
     return render(request, "LCS/signup.html", {'form': form})
@@ -43,18 +44,26 @@ def logoutuser(request):
     logout(request)
     return redirect('login')
 
+
 def home(request):
     products = Product.objects.all()
-    return render(request, 'LCS/dashboard.html', {'products': products})
+    customer = customer_data()
+    return render(request, 'LCS/dashboard.html', {'products': products, 'customer':customer})
+
+def customer_data():
+    customer = CustomerForm
+    return customer
 
 def cart(request):
-    return render(request, 'LCS/cart.html')
+    cart = Cart(request)
+    return render(request, 'LCS/cart.html', { 'cart': cart})
 
 def pack(request):
     products = Product.objects.all()
+    customer = customer_data()
     cart = Cart(request)
     cart.clear()
-    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart, 'customer':customer})
 
 
 
@@ -62,22 +71,25 @@ def cart_add(request, id):
     cart = Cart(request)
     products = Product.objects.all()
     product = Product.objects.get(id=id)
+    customer = customer_data()
     cart.add(product=product)
-    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart, 'customer':customer})
 
 def item_clear(request, id):
     cart = Cart(request)
     products = Product.objects.all()
     product = Product.objects.get(id=id)
+    customer = customer_data()
     cart.remove(product)
-    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart , 'customer':customer})
 
 def item_increment(request, id):
     products = Product.objects.all()
     cart = Cart(request)
     product = Product.objects.get(id=id)
     cart.add(product=product)
-    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+    customer = customer_data()
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart , 'customer':customer})
 
 
 def item_decrement(request, id):
@@ -85,13 +97,16 @@ def item_decrement(request, id):
     cart = Cart(request)
     product = Product.objects.get(id=id)
     cart.decrement(product=product)
-    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+    customer = customer_data()
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart , 'customer':customer})
+
 
 def cart_clear(request):
     products = Product.objects.all()
     cart = Cart(request)
     cart.clear()
-    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart})
+    customer = customer_data()
+    return render(request, 'LCS/dashboard.html', {'products': products, 'cart': cart , 'customer':customer})
 
 def get_total(request, id=1):
     cart = Cart(request)

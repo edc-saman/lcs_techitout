@@ -1,5 +1,5 @@
 {% extends 'LCS/Layout.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 <section class="container">
@@ -56,13 +56,14 @@
 	</div>
 </section>
 <br>
-
+{{customer|crispy}}
+<br>
 <div class="container">
 	<div>
   <div class="center">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD PACK TO CART</button>
 </div></div>
-
+<br>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
