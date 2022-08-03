@@ -11,13 +11,16 @@ from .models import *
 
 
 def signup(request):
+    success_message=''
     if request.method == "POST":
         form = CreateNewUser(request.POST)
         if form.is_valid():
             form.save()
+            success_message = "User Created Successfully!"
+            return redirect('login')
     else:
         form = CreateNewUser()
-    return render(request, "LCS/signup.html", {'form': form})
+    return render(request, "LCS/signup.html", {'form': form, 'success_message': success_message})
 
 
 def loginPage(request):
