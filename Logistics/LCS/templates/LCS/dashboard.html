@@ -1,7 +1,6 @@
 {% extends 'LCS/Layout.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-
 <section class="container">
     <h2 class="section-header">Products</h2>
     <i class="fa-solid fa-cart-shopping"></i>
@@ -33,23 +32,23 @@
 <section class="container" id="cont">
       <h2 class="section-header"> Pack </h2>
 
-        <table class="cart-table">
-            <div class="cart-row">
+        <table class="table" id="product_data">
+            <thead class="thead-dark">
                 <tr>
                     <th>
-                        <span class="cart-item cart-header cart-column">Item</span>
+                        <span>Item</span>
                     </th>
                     <th>
-                        <span class="cart-price cart-header cart-column">Price</span>
+                        <span>Price</span>
                     </th>
                     <th>
-                        <span class="cart-quantity cart-header cart-column">Quantity</span>
+                        <span>Quantity</span>
                     </th>
                     <th>
-                        <span class="cart-total-title cart-header cart-column">Total</span>
+                        <span>Total</span>
                     </th>
                 </tr>
-            </div>
+            </thead>
             <br>
             {% for key,value in request.session.cart.items %}
             <tr>
@@ -58,10 +57,9 @@
                 </td>
                 <td class="cart-price">
                     {{value.price}}
-
                 </td>
                 <td class="cart-quantity">
-                    <a href="{% url 'item_decrement' value.product_id %}" class="btn btn-light" id="a-plus"> - </a>
+                    <a href="{% url 'item_decrement' value.product_id %}" class="btn btn-light" id="a-minus"> - </a>
                     {{value.quantity}}
                     <a href="{% url 'item_increment' value.product_id %}" class="btn btn-light" id="a-plus"> + </a>
                 </td>
@@ -104,11 +102,11 @@
 	</div>
 </section>
 <br>
-
+<br>
 <div class="container">
 	<div>
   <div class="center">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">ADD PACK TO CART</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >ADD PACK TO CART</button>
 </div></div>
 
 <!-- Modal -->
@@ -123,8 +121,8 @@
         Add another pack?
       </div>
       <div class="modal-footer">
-  <a href=" {% url 'pack' %} " class="btn btn-primary" > Yes </a>
-  <a href=" {% url 'cart' %} " class="btn btn-primary" >No, Continue to Cart </a>
+          <a href=" {% url 'pack' %} " class="btn btn-primary" > Yes </a>
+          <a href=" {% url 'cart' %} " class="btn btn-primary" > No </a>
       </div>
     </div>
   </div>
