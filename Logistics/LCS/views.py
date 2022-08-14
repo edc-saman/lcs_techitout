@@ -70,24 +70,6 @@ def addrecord(request):
       #return HttpResponseRedirect(reverse('cart'))
       return render(request, 'LCS/cart.html')
 
-def cart1(request,id):
-    item = get_object_or_404(Product,id=id)
-    order_item, created = Order_Item.objects.get_or_create(item=item,user=request.user,ordered=False)
-    order_filter = Order.objects.filter(user=request.user, ordered=False)
-    if order_filter.exists():
-        order = order_filter[0]
-        if order.items.filters(id=id).exists():
-            order_item.quantity += 1
-            order_item.save()
-        else:
-            order.items.add(order_item)
-    else:
-        ordered_date = timezone.now
-        order = Order.objects.create(user=request.user,ordered_date=ordered_date)
-        order.items(order_item)
-
-    return redirect("LCS/cart.html",id=id)
-
 
 def customer_data(request):
     if request.method == "POST":
