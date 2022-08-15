@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    
+
 <head>
 	<title>Login</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -14,13 +14,13 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background: white !important;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: black;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -39,9 +39,11 @@
 
 		#form-title{
 			color: #fff;
-			
-		}
 
+		}
+    .text-msg{
+      color: white;
+    }
 		.login_btn {
 			width: 100%;
 			background: #33ccff !important;
@@ -115,7 +117,7 @@
 				{% endfor %}
 
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+					<div class="d-flex justify-content-center links text-msg">
 						Don't have an account? <a href="{% url 'signup' %}" class="ml-2">Sign Up</a>
 					</div>
 

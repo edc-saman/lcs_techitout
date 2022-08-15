@@ -1,58 +1,30 @@
 {% extends 'LCS/Layout.html' %}
 {% block content %}
-<form action="addrecord/" method="post">
 <h1>CART</h1>
-  <table class="table" id="cart_table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>
-                        <span>Item</span>
-                    </th>
-                    <th>
-                        <span>Price</span>
-                    </th>
-                    <th>
-                        <span>Quantity</span>
-                    </th>
-                </tr>
-            </thead>
-            <br>
-            {% for key,value in request.session.cart.items %}
-            <tr>
-                <td class="cart-item">
-                    {{value.name}}
-                </td>
-                <td class="cart-price">
-                    {{value.price}}
 
-                </td>
-                <td class="cart-quantity">
-                    {{value.quantity}}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    <br><br>
-<div>   <h2>Destination details</h2></div>
+    <section class="container" id="cont">
+          <h2 class="section-header">Pack </h2>
+    	<div class="cart-row">
+    		<span class="cart-item cart-header cart-column">ITEM</span>
+    		<span class="cart-price cart-header cart-column">PRICE</span>
+    		<span class="cart-quantity cart-header cart-column">QUANTITY</span>
 
-    <br><br>
-    {% csrf_token %}
-    First Name:<br>
-    <input name="first">
-    <br><br>
-    Last Name:<br>
-    <input name="last">
-    <br><br>
-    Email:<br>
-    <input name="email">
-    <br><br>
-    Mobile:<br>
-    <input name="mobile">
-    <br><br>
-    Address:<br>
-    <input name="address">
-    <br><br>
-    <input type="submit" class="btn btn-primary" value="Place Order">
-</form>
+    	</div>
+    	<div class="cart-items">
 
+    {% for key,value in request.session.cart.items %}
+    <div class="cart-rows">
+    							<span class="cart-item cart-column">{{value.name}}</span>
+    							<span class="cart-price  cart-column">{{value.price}}</span>
+
+    							<span class="cart-quantity-input cart-column">
+    								{{value.quantity}}</span>
+
+
+
+
+    		</div>
+    {% endfor %}
+    	</div>
+    </section>
     {% endblock %}
